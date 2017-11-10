@@ -17,10 +17,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /**
  * Class for Initiating the scraping process.
  * @implements {IScraper}
- * @type {BaseScraper}
+ * @type {AbstractScraper}
+ * @Abstract
  */
 // Import the necessary modules.
-class BaseScraper extends _IScraper2.default {
+class AbstractScraper extends _IScraper2.default {
 
   /**
    * Create a new BaseScraper object.
@@ -116,4 +117,4 @@ class BaseScraper extends _IScraper2.default {
   }
 
 }
-exports.default = BaseScraper;
+exports.default = AbstractScraper;
