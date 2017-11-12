@@ -4,7 +4,7 @@
 import { expect } from 'chai'
 
 import Context from '../src/Context'
-import IProvider from '../src/IProvider'
+import IProvider from '../src/providers/IProvider'
 
 /** @test {Context} */
 describe('Context', () => {
@@ -22,15 +22,10 @@ describe('Context', () => {
     context = new Context()
   })
 
-  /** @test {Context#_provider} */
-  it('should check if Context has a _provider', () => {
-    expect(context._provider).to.be.an('object')
-  })
-
   /** @test {Context#execute} */
   it('should throw an error when executing the default provider', () => {
     expect(context.execute.bind(context)).to
-      .throw('Using default method: \'search\'')
+      .throw('Using default method: \'getContents\'')
   })
 
   /** @test {Context#_provider} */
@@ -39,7 +34,7 @@ describe('Context', () => {
     const iProvider = new IProvider()
     context.provider = iProvider
 
-    expect(context._provider).to.not.equal(current)
-    expect(context._provider).to.equal(iProvider)
+    expect(context.provider).to.not.equal(current)
+    expect(context.provider).to.equal(iProvider)
   })
 })

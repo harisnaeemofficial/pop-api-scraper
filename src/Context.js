@@ -1,6 +1,6 @@
 // Import the necessary modules.
 // @flow
-import IProvider from './IProvider'
+import IProvider from './providers/IProvider'
 
 /**
  * Base context for the strategy pattern.
@@ -12,7 +12,7 @@ export default class Context {
    * The provider of the context to execute.
    * @type {IProider}
    */
-  _provider: IProvider
+  provider: IProvider
 
   /**
    * Create a new Context object.
@@ -23,24 +23,7 @@ export default class Context {
      * The provider of the context to execute.
      * @type {IProider}
      */
-    this._provider = provider
-  }
-
-  /**
-   * Getter for the provider of the context.
-   * @returns {IProvider} - The currently set provider.
-   */
-  get provider(): IProvider {
-    return this._provider
-  }
-
-  /**
-   * Setter for the provider of the context.
-   * @param {!IProvider} provider - The provider to set.
-   * @returns {undefined}
-   */
-  set provider(provider: IProvider): void {
-    this._provider = provider
+    this.provider = provider
   }
 
   /**
@@ -49,7 +32,7 @@ export default class Context {
    * @returns {Promise<Array<Object>, Error>} - A list of scraped content.
    */
   execute(): Promise<Array<Object> | Error> {
-    return this.provider.search()
+    return this.provider.getContents()
   }
 
 }
