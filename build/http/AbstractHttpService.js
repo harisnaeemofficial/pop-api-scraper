@@ -32,11 +32,8 @@ class AbstractHttpService extends _IHttpService2.default {
 
   /**
    * Create a new Request object.
-   * @param {!PopApi} PopApi - The PopApi instance.
-   * @param {!Object} options - The options to the HttpService middleware.
-   * @param {!string} options.baseUrl - The base url of the website to scrape.
-   * @param {?Object} options.options - The default options for the HTTP
-   * requests.
+   * @param {!string} baseUrl - The base url of the website to scrape.
+   * @param {?Object} options={} - The default options for the HTTP requests.
    */
 
 
@@ -44,7 +41,7 @@ class AbstractHttpService extends _IHttpService2.default {
    * The default options for the HTTP requests.
    * @type {Object}
    */
-  constructor(PopApi, { baseUrl, options = {} }) {
+  constructor({ baseUrl, options = {} }) {
     super();
 
     /**

@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _IProvider = require('./IProvider');
+var _IProvider = require('./providers/IProvider');
 
 var _IProvider2 = _interopRequireDefault(_IProvider);
 
@@ -18,37 +18,15 @@ class Context {
 
   /**
    * Create a new Context object.
-   * @param {IProvider} provider - The provider of the context to execute.
+   * @param {?IProvider} [provider=new IProvider()] - The provider of the
+   * context to execute.
    */
   constructor(provider = new _IProvider2.default()) {
     /**
      * The provider of the context to execute.
      * @type {IProider}
      */
-    this._provider = provider;
-  }
-
-  /**
-   * Getter for the provider of the context.
-   * @returns {IProvider} - The currently set provider.
-   */
-
-
-  /**
-   * The provider of the context to execute.
-   * @type {IProider}
-   */
-  get provider() {
-    return this._provider;
-  }
-
-  /**
-   * Setter for the provider of the context.
-   * @param {!IProvider} provider - The provider to set.
-   * @returns {undefined}
-   */
-  set provider(provider) {
-    this._provider = provider;
+    this.provider = provider;
   }
 
   /**
@@ -56,8 +34,14 @@ class Context {
    * @override
    * @returns {Promise<Array<Object>, Error>} - A list of scraped content.
    */
+
+
+  /**
+   * The provider of the context to execute.
+   * @type {IProider}
+   */
   execute() {
-    return this.provider.search();
+    return this.provider.getContents();
   }
 
 }
