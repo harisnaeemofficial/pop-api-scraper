@@ -6,8 +6,8 @@ import mkdirp from 'mkdirp'
 import { join } from 'path'
 import { expect } from 'chai'
 
-import AbstractScraper from '../src/scraper/AbstractScraper'
 import Cron from '../src/Cron'
+import PopApiScraper from '../src/PopApiScraper'
 
 /** @test {Cron} */
 describe('Cron', () => {
@@ -42,7 +42,7 @@ describe('Cron', () => {
     del.sync([tempDir])
     mkdirp(tempDir)
 
-    const scraper = new AbstractScraper({}, {
+    const scraper = new PopApiScraper({}, {
       statusPath: join(...[tempDir, 'status.json']),
       updatedPath: join(...[tempDir, 'updated.json'])
     })
@@ -68,9 +68,11 @@ describe('Cron', () => {
   })
 
   /** @test {Cron#_onTick} */
-  it('should throw an error when calling the scrape method', () => {
-    expect(cron._onTick.bind({}, PopApi)).to
-      .throw('Using default method: \'scrape\'')
+  it('should execute the scrape method', done => {
+    cron._onTick(PopApi).then(res => {
+      expect(res).to.be.undefined
+      done()
+    }).catch(done)
   })
 
   /** @test {Cron#_getCron} */
