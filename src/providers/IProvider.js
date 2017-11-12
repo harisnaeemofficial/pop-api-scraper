@@ -22,7 +22,7 @@ export default class IProvider {
    * Get the contents for the configurations.
    * @abstract
    * @throws {Error} - Using default method: 'getContents'
-   * @returns {Promise<Array<Array<Object>>, Error>} - The results of the
+   * @returns {Promise<Array<Object>, Error>} - The results of the
    * scrape configurations.
    */
   getContents(): Promise<Array<Object> | Error> {

@@ -31,7 +31,7 @@ export default class AbstractProvider extends IProvider {
    * @param {!Array<Object>} options.configs - The configurations of the
    * provider.
    */
-  constructor(PopApiScraper: PopApiScraper, {name, configs}: Object): void {
+  constructor(PopApiScraper: any, {name, configs}: Object): void {
     super()
 
     /**
@@ -49,10 +49,10 @@ export default class AbstractProvider extends IProvider {
   /**
    * Get the contents for the configurations.
    * @override
-   * @returns {Promise<Array<Array<Object>>, Error>} - The results of the
+   * @returns {Promise<Array<Object>, Error>} - The results of the
    * scraped configurations.
    */
-  getContents(): Promise<Array<Array<Object>> | Error> {
+  getContents(): Promise<Array<Object> | Error> {
     return pMap(this._configs, config => this.getContent(config))
   }
 

@@ -2,6 +2,7 @@
 // @flow
 import AbstractProvider from '../src/providers/AbstractProvider'
 import HttpService from '../src/http/HttpService'
+import type PopApiScraper from '../src/PopApiScraper'
 
 /**
  * Example provider extending the abstract provider.
@@ -40,9 +41,9 @@ export default class ExampleProvider extends AbstractProvider {
    */
   getContent(config: Object): Promise<Array<Object> | Error> {
     // Or use the HttpService to get  content from web api's or websites.
-    return [{
+    return Promise.resolve([{
       key: 'value'
-    }]
+    }])
   }
 
 }

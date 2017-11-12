@@ -8,7 +8,7 @@ import {
   HttpService,
   IHttpService
 } from './http'
-import { AbstractProvider } from './providers'
+import AbstractProvider from './providers/AbstractProvider'
 
 export default {
   Context,
