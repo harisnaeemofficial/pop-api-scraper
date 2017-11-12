@@ -1,6 +1,7 @@
 // Import the necessary modules.
 // @flow
 import AbstractProvider from '../src/providers/AbstractProvider'
+import HttpService from '../src/http/HttpService'
 
 /**
  * Example provider extending the abstract provider.
