@@ -37,7 +37,7 @@ describe('HttpService', () => {
     del.sync([tempDir])
     mkdirp(tempDir)
 
-    httpService = new HttpService({}, {
+    httpService = new HttpService({
       baseUrl: 'https://jsonplaceholder.typicode.com/'
     })
   })

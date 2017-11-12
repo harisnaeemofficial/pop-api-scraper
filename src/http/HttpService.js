@@ -11,22 +11,10 @@ import AbstractHttpService from './AbstractHttpService'
 
 /**
  * Class for making HTTP calls with the got library.
- * @extends {HttpService}
+ * @extends {AbstractHttpService}
  * @type {HttpService}
  */
 export default class HttpService extends AbstractHttpService {
-
-  /**
-   * Create a new Request object.
-   * @param {!PopApi} PopApi - The PopApi instance.
-   * @param {!Object} options - The options for the HttpService middleware.
-   * @param {!string} options.baseUrl - The base url of the website to scrape.
-   * @param {?Object} options.options - The default options for the HTTP
-   * requests.
-   */
-  constructor(PopApi: any, {baseUrl, options}: Object): void {
-    super(PopApi, {baseUrl, options})
-  }
 
   /**
    * Make a HTTP request.

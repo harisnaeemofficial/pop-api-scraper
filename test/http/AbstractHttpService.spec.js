@@ -18,14 +18,14 @@ describe('AbstractHttpService', () => {
    * @type {Function}
    */
   before(() => {
-    abstractHttpService = new AbstractHttpService({}, {
+    abstractHttpService = new AbstractHttpService({
       baseUrl: 'https://jsonplaceholder.typicode.com/'
     })
   })
 
   /** @test {Httpservice#constructor} */
   it('should throw an error when calling the get method', () => {
-    abstractHttpService = new AbstractHttpService({}, {
+    abstractHttpService = new AbstractHttpService({
       baseUrl: 'https://jsonplaceholder.typicode.com',
       options: {}
     })
