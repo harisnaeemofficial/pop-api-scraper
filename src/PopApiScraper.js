@@ -37,6 +37,8 @@ export default class PopApiScraper {
 
   /**
    * Create a new BaseScraper object.
+   * The base modules for popcorn-api
+   * @external {PopApi} https://github.com/ChrisAlderson/pop-api
    * @param {!PopApi} PopApi - The PopApiScraper instance.
    * @param {!Context} options.context - The context the run the providers in.
    * @param {!Object} options - The options for the BaseScraper middleware.
@@ -114,7 +116,7 @@ export default class PopApiScraper {
    * @param {!Function} Plugin - The plugin to use.
    * @param {!Object} args - The arguments passed down to the constructor of
    * the plugin.
-   * @returns {Promise<PopApi>} - The PopApi instance with the installed
+   * @returns {Promise<PopApiScraper>} - The PopApi instance with the installed
    * plugins.
    */
   static use(Plugin: any, ...args: any): any {

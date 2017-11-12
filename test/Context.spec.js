@@ -28,7 +28,7 @@ describe('Context', () => {
       .throw('Using default method: \'getContents\'')
   })
 
-  /** @test {Context#_provider} */
+  /** @test {Context#provider} */
   it('should check if Context has a _provider', () => {
     const current = context.provider
     const iProvider = new IProvider()

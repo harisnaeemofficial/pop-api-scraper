@@ -16,7 +16,8 @@ export default class Context {
 
   /**
    * Create a new Context object.
-   * @param {IProvider} provider - The provider of the context to execute.
+   * @param {?IProvider} [provider=new IProvider()] - The provider of the
+   * context to execute.
    */
   constructor(provider: IProvider = new IProvider()): void {
     /**

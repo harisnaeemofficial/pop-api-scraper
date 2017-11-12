@@ -28,14 +28,14 @@ export default class Cron {
 
   /**
    * Create a new Cron object.
-   * @param {!PopApi} PopApi - The PopApiScraper instance.
+   * @param {!PopApiScraper} PopApiScraper - The PopApiScraper instance.
    * @param {!Object} [options={}] - The options for the Cron middleware.
    * @param {!string} [options.cronTime=0 0 *\/6 * * *] - The cron tab to
    * execute the scraper.
    * @param {!string} [options.timeZone=America/Los_Angels] - The timezone the
    * cronjob will hold.
    */
-  constructor(PopApi: any, {
+  constructor(PopApiScraper: any, {
     cronTime = '0 0 */6 * * *',
     timeZone = 'America/Los_Angeles'
   }: Object = {}): void {
@@ -50,41 +50,41 @@ export default class Cron {
      */
     this._timeZone = timeZone
 
-    PopApi.cron = this._getCron(PopApi)
+    PopApiScraper.cron = this._getCron(PopApiScraper)
   }
 
   /**
    * Function execute on complete by the cron job.
-   * @param {!PopApi} PopApi - The PopApiScraper instance.
+   * @param {!PopApiScraper} PopApiScraper - The PopApiScraper instance.
    * @returns {Promise<string, Error>} - The promise to set the scraper
    * status .
    */
-  _onComplete(PopApi: any): Promise<string | Error> {
-    return PopApi.scraper.setStatus('Idle')
+  _onComplete(PopApiScraper: any): Promise<string | Error> {
+    return PopApiScraper.scraper.setStatus('Idle')
   }
 
   /**
    * Function executed on tick by the cron job.
-   * @param {!PopApi} PopApi - The PopApiScraper instance.
+   * @param {!PopApiScraper} PopApiScraper - The PopApiScraper instance.
    * @returns {Promise<Array<Object>, Error>} - The result of the scraping
    * process.
    */
-  _onTick(PopApi: any): Promise<Array<any> | Error> {
-    return PopApi.scraper.scrape()
+  _onTick(PopApiScraper: any): Promise<Array<any> | Error> {
+    return PopApiScraper.scraper.scrape()
   }
 
   /**
    * Get the cron job to run.
-   * @param {!PopApi} PopApi - The PopApiScraper instance.
+   * @param {!PopApiScraper} PopApiScraper - The PopApiScraper instance.
    * @param {?boolean} [start] - Start the cron job.
    * @returns {CronJob} - A configured cron job.
    */
-  _getCron(PopApi: any, start?: boolean): CronJob {
+  _getCron(PopApiScraper: any, start?: boolean): CronJob {
     return new CronJob({
       cronTime: this._cronTime,
       timeZone: this._timeZone,
-      onComplete: this._onComplete.bind(PopApi),
-      onTick: this._onTick.bind(PopApi),
+      onComplete: this._onComplete.bind(PopApiScraper),
+      onTick: this._onTick.bind(PopApiScraper),
       start
     })
   }

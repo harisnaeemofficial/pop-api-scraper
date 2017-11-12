@@ -92,7 +92,7 @@ describe('PopApiScraper', () => {
    * @returns {undefined}
    */
   function testUse(msg: string): void {
-    /** @test {PopApi.use} */
+    /** @test {PopApiScraper.use} */
     it(msg, () => {
       PopApiScraper.use(ExampleProvider, {
         name: 'exampleProvider',
@@ -110,7 +110,7 @@ describe('PopApiScraper', () => {
     'should not register the same plugin twice'
   ].map(testUse)
 
-  /** @test {PopApi.use} */
+  /** @test {PopApiScraper.use} */
   it('should not register the plugin if it is not a class', () => {
     PopApiScraper.use({})
 
