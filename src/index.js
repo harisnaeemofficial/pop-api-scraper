@@ -1,35 +1,31 @@
 // Import the necessary modules.
+// @flow
 import Context from './Context'
 import Cron from './Cron'
-import IProvider from '.IProvider'
+import PopApiScraper from './PopApiScraper'
 import {
   AbstractHttpService,
   HttpService,
   IHttpService
 } from './http'
-import {
-  AbstractScraper,
-  IScraper
-} from './scraper'
+import { AbstractProvider } from './providers'
 
 export default {
   Context,
   Cron,
-  IProvider,
+  PopApiScraper,
   AbstractHttpService,
   HttpService,
   IHttpService,
-  AbstractScraper,
-  IScraper
+  AbstractProvider
 }
 
 export {
   Context,
   Cron,
-  IProvider,
+  PopApiScraper,
   AbstractHttpService,
   HttpService,
   IHttpService,
-  AbstractScraper,
-  IScraper
+  AbstractProvider
 }
