@@ -19,7 +19,7 @@ describe('PopApiScraper', () => {
   let popApiScraper: PopApiScraper
 
   /**
-   * The temporaty directory to store the status and updated files.
+   * The temporary directory to store the status and updated files.
    * @type {string}
    */
   let tempDir: string

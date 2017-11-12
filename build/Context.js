@@ -24,7 +24,7 @@ class Context {
   constructor(provider = new _IProvider2.default()) {
     /**
      * The provider of the context to execute.
-     * @type {IProider}
+     * @type {IProvider}
      */
     this.provider = provider;
   }
@@ -38,7 +38,7 @@ class Context {
 
   /**
    * The provider of the context to execute.
-   * @type {IProider}
+   * @type {IProvider}
    */
   execute() {
     return this.provider.getContents();

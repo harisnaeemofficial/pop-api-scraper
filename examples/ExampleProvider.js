@@ -40,7 +40,7 @@ export default class ExampleProvider extends AbstractProvider {
    * @returns {Promise<Array<Object>, Error>} - The results of a configuration.
    */
   getContent(config: Object): Promise<Array<Object> | Error> {
-    // Or use the HttpService to get  content from web api's or websites.
+    // Or use the HttpService to get  content from web apis or websites.
     return Promise.resolve([{
       key: 'value'
     }])

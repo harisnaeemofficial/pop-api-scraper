@@ -43,7 +43,7 @@ export default class PopApiScraper {
    * @param {!Context} options.context - The context the run the providers in.
    * @param {!Object} options - The options for the BaseScraper middleware.
    * @param {!string} options.statusPath = - The path of the status file.
-   * @param {!string} options.updatePath - The path of the updated file.
+   * @param {!string} options.updatedPath - The path of the updated file.
    */
   constructor(PopApi: any, {
     context,
@@ -139,16 +139,16 @@ export default class PopApiScraper {
    * @returns {Promise<Array<Object>, Error>} - The array of the scraped
    * content.
    */
-  scrape(): Promise<Array<Object> | Error> {
-    this.setUpdated(Math.floor(new Date().getTime() / 1000))
+  async scrape(): Promise<Array<Object> | Error> {
+    await this.setUpdated(Math.floor(new Date().getTime() / 1000))
 
-    return pMap(PopApiScraper._installedPlugins.values(), provider => {
+    return pMap(PopApiScraper._installedPlugins.values(), async provider => {
       this._context.provider = provider
-      this.setStatus(`Scraping: ${provider.name}`)
+      await this.setStatus(`Scraping: ${provider.name}`)
 
       return this._context.execute()
     }, {
-      concurrenct: 1
+      concurrency: 1
     }).then(() => this.setStatus('idle'))
   }
 

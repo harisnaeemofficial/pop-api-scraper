@@ -29,7 +29,7 @@ class PopApiScraper {
    * @param {!Context} options.context - The context the run the providers in.
    * @param {!Object} options - The options for the BaseScraper middleware.
    * @param {!string} options.statusPath = - The path of the status file.
-   * @param {!string} options.updatePath - The path of the updated file.
+   * @param {!string} options.updatedPath - The path of the updated file.
    */
 
 
@@ -146,16 +146,16 @@ class PopApiScraper {
    * @returns {Promise<Array<Object>, Error>} - The array of the scraped
    * content.
    */
-  scrape() {
-    this.setUpdated(Math.floor(new Date().getTime() / 1000));
+  async scrape() {
+    await this.setUpdated(Math.floor(new Date().getTime() / 1000));
 
-    return (0, _pMap2.default)(PopApiScraper._installedPlugins.values(), provider => {
+    return (0, _pMap2.default)(PopApiScraper._installedPlugins.values(), async provider => {
       this._context.provider = provider;
-      this.setStatus(`Scraping: ${provider.name}`);
+      await this.setStatus(`Scraping: ${provider.name}`);
 
       return this._context.execute();
     }, {
-      concurrenct: 1
+      concurrency: 1
     }).then(() => this.setStatus('idle'));
   }
 

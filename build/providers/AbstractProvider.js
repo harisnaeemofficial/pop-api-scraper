@@ -17,7 +17,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /**
  * The abstract provider for the strategy pattern.
  * @implements {IProvider}
- * @type {AbstactProvider}
+ * @type {AbstractProvider}
  */
 // Import the necessary.
 class AbstractProvider extends _IProvider2.default {

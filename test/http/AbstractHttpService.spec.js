@@ -23,7 +23,7 @@ describe('AbstractHttpService', () => {
     })
   })
 
-  /** @test {Httpservice#constructor} */
+  /** @test {HttpService#constructor} */
   it('should throw an error when calling the get method', () => {
     abstractHttpService = new AbstractHttpService({
       baseUrl: 'https://jsonplaceholder.typicode.com',

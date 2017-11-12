@@ -7,7 +7,7 @@ import IProvider from './IProvider'
 /**
  * The abstract provider for the strategy pattern.
  * @implements {IProvider}
- * @type {AbstactProvider}
+ * @type {AbstractProvider}
  */
 export default class AbstractProvider extends IProvider {
 

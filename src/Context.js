@@ -10,7 +10,7 @@ export default class Context {
 
   /**
    * The provider of the context to execute.
-   * @type {IProider}
+   * @type {IProvider}
    */
   provider: IProvider
 
@@ -22,7 +22,7 @@ export default class Context {
   constructor(provider: IProvider = new IProvider()): void {
     /**
      * The provider of the context to execute.
-     * @type {IProider}
+     * @type {IProvider}
      */
     this.provider = provider
   }

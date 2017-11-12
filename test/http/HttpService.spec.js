@@ -18,7 +18,7 @@ describe('HttpService', () => {
   let httpService: HttpService
 
   /**
-   * The temporaty directory to store the status and updated files.
+   * The temporary directory to store the status and updated files.
    * @type {string}
    */
   let tempDir: string
@@ -43,7 +43,7 @@ describe('HttpService', () => {
   })
 
   /** @test {HttpService#_request} */
-  it('should make a succesful HTTP request', done => {
+  it('should make a successful HTTP request', done => {
     httpService._request('GET', 'posts/1', {
       json: true
     }, true).then(res => {

@@ -24,7 +24,7 @@ describe('Cron', () => {
   let PopApi: Object
 
   /**
-   * The temporaty directory to store the status and updated files.
+   * The temporary directory to store the status and updated files.
    * @type {string}
    */
   let tempDir: string
