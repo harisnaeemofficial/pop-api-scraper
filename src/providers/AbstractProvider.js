@@ -54,7 +54,11 @@ export default class AbstractProvider extends IProvider {
    * configurations.
    */
   scrapeConfigs(): Promise<Array<Object> | Error> {
-    return pMap(this._configs, config => this.scrapeConfig(config))
+    return pMap(this._configs, config => {
+      return this.scrapeConfig(config)
+    }, {
+      concurrency: 1
+    })
   }
 
 }

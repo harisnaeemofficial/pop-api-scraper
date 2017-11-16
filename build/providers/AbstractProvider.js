@@ -65,7 +65,11 @@ class AbstractProvider extends _IProvider2.default {
    * @type {Array<Object>}
    */
   scrapeConfigs() {
-    return (0, _pMap2.default)(this._configs, config => this.scrapeConfig(config));
+    return (0, _pMap2.default)(this._configs, config => {
+      return this.scrapeConfig(config);
+    }, {
+      concurrency: 1
+    });
   }
 
 }
