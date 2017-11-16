@@ -12,48 +12,49 @@ import IProvider from './IProvider'
 export default class AbstractProvider extends IProvider {
 
   /**
-   * The name of the provider.
-   * @type {string}
-   */
-  _name: string
-
-  /**
    * The configs fro the abstract provider.
    * @type {Array<Object>}
    */
   _configs: Array<Object>
 
   /**
+   * The max allowed concurrent web requests.
+   * @type {number}
+   */
+  _maxWebRequests: number
+
+  /**
    * Create a nwe AbstractProvider object.
    * @param {!PopApiScraper} PopApiScraper - The PopApScraper instance.
    * @param {!Object} options - The options for the AbstractProvider.
-   * @param {!string} options.name - The name of the provider.
    * @param {!Array<Object>} options.configs - The configurations of the
    * provider.
+   * @param {!number} [maxWebRequests=2] - The max allowed concurrent web
+   * requests.
    */
-  constructor(PopApiScraper: any, {name, configs}: Object): void {
+  constructor(PopApiScraper: any, {configs, maxWebRequests = 2}: Object): void {
     super()
 
-    /**
-     * the name of the provider.
-     * @type {string}
-     */
-    this._name = name
     /**
      * The configs fro the abstract provider.
      * @type {Array<Object>}
      */
     this._configs = configs
+    /**
+     * The max allowed concurrent web requests.
+     * @type {number}
+     */
+    this._maxWebRequests = maxWebRequests
   }
 
   /**
    * Get the contents for the configurations.
    * @override
-   * @returns {Promise<Array<Object>, Error>} - The results of the
-   * scraped configurations.
+   * @returns {Promise<Array<Object>, Error>} - The results of the scraped
+   * configurations.
    */
-  getContents(): Promise<Array<Object> | Error> {
-    return pMap(this._configs, config => this.getContent(config))
+  scrapeConfigs(): Promise<Array<Object> | Error> {
+    return pMap(this._configs, config => this.scrapeConfig(config))
   }
 
 }

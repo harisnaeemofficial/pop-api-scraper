@@ -25,11 +25,11 @@ describe('Context', () => {
   /** @test {Context#execute} */
   it('should throw an error when executing the default provider', () => {
     expect(context.execute.bind(context)).to
-      .throw('Using default method: \'getContents\'')
+      .throw('Using default method: \'scrapeConfigs\'')
   })
 
   /** @test {Context#provider} */
-  it('should check if Context has a _provider', () => {
+  it('should check if Context has a provider', () => {
     const current = context.provider
     const iProvider = new IProvider()
     context.provider = iProvider

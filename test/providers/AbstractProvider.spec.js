@@ -7,14 +7,14 @@ import AbstractProvider from '../../src/providers/AbstractProvider'
 
 /** @test {AbstractProvider} */
 describe('AbstractProvider', () => {
-  /** @test {AbstractProvider#getContents} */
-  it('should throw an error when calling the getContents method', done => {
+  /** @test {AbstractProvider#scrapeConfigs} */
+  it('should throw an error when calling the scrapeConfigs method', done => {
     const abstractProvider = new AbstractProvider({}, {
       baseUrl: 'https://jsonplaceholder.typicode.com/',
       configs: [{}]
     })
 
-    abstractProvider.getContents()
+    abstractProvider.scrapeConfigs()
       .then(done)
       .catch(err => {
         expect(err).to.be.an('Error')

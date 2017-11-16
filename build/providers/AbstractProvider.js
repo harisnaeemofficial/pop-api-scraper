@@ -26,36 +26,10 @@ class AbstractProvider extends _IProvider2.default {
    * Create a nwe AbstractProvider object.
    * @param {!PopApiScraper} PopApiScraper - The PopApScraper instance.
    * @param {!Object} options - The options for the AbstractProvider.
-   * @param {!string} options.name - The name of the provider.
    * @param {!Array<Object>} options.configs - The configurations of the
    * provider.
-   */
-
-
-  /**
-   * The name of the provider.
-   * @type {string}
-   */
-  constructor(PopApiScraper, { name, configs }) {
-    super();
-
-    /**
-     * the name of the provider.
-     * @type {string}
-     */
-    this._name = name;
-    /**
-     * The configs fro the abstract provider.
-     * @type {Array<Object>}
-     */
-    this._configs = configs;
-  }
-
-  /**
-   * Get the contents for the configurations.
-   * @override
-   * @returns {Promise<Array<Object>, Error>} - The results of the
-   * scraped configurations.
+   * @param {!number} [maxWebRequests=2] - The max allowed concurrent web
+   * requests.
    */
 
 
@@ -63,8 +37,35 @@ class AbstractProvider extends _IProvider2.default {
    * The configs fro the abstract provider.
    * @type {Array<Object>}
    */
-  getContents() {
-    return (0, _pMap2.default)(this._configs, config => this.getContent(config));
+  constructor(PopApiScraper, { configs, maxWebRequests = 2 }) {
+    super();
+
+    /**
+     * The configs fro the abstract provider.
+     * @type {Array<Object>}
+     */
+    this._configs = configs;
+    /**
+     * The max allowed concurrent web requests.
+     * @type {number}
+     */
+    this._maxWebRequests = maxWebRequests;
+  }
+
+  /**
+   * Get the contents for the configurations.
+   * @override
+   * @returns {Promise<Array<Object>, Error>} - The results of the scraped
+   * configurations.
+   */
+
+
+  /**
+   * The max allowed concurrent web requests.
+   * @type {number}
+   */
+  scrapeConfigs() {
+    return (0, _pMap2.default)(this._configs, config => this.scrapeConfig(config));
   }
 
 }

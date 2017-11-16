@@ -6,7 +6,6 @@ import mkdirp from 'mkdirp'
 import { expect } from 'chai'
 import { join } from 'path'
 
-import Context from '../src/Context'
 import ExampleProvider from '../examples/ExampleProvider'
 import PopApiScraper from '../src/PopApiScraper'
 
@@ -38,9 +37,14 @@ describe('PopApiScraper', () => {
     mkdirp.sync(tempDir)
 
     popApiScraper = new PopApiScraper({}, {
-      context: new Context(),
-      statusPath: join(...[tempDir, 'status.json']),
-      updatedPath: join(...[tempDir, 'updated.json'])
+      statusPath: join(...[
+        tempDir,
+        'status.json'
+      ]),
+      updatedPath: join(...[
+        tempDir,
+        'updated.json'
+      ])
     })
   })
 
@@ -120,10 +124,12 @@ describe('PopApiScraper', () => {
 
   /** @test {PopApiScraper#scrape} */
   it('should call the scrape method', done => {
-    popApiScraper.scrape().then(res => {
-      expect(res).to.be.undefined
-      done()
-    }).catch(done)
+    popApiScraper.scrape()
+      .then(done)
+      .catch(err => {
+        expect(err).to.be.an('Error')
+        done()
+      })
   })
 
   /**

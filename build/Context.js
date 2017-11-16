@@ -31,7 +31,6 @@ class Context {
 
   /**
    * Execute the set provider.
-   * @override
    * @returns {Promise<Array<Object>, Error>} - A list of scraped content.
    */
 
@@ -41,7 +40,7 @@ class Context {
    * @type {IProvider}
    */
   execute() {
-    return this.provider.getContents();
+    return this.provider.scrapeConfigs();
   }
 
 }

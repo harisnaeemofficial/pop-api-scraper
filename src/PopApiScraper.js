@@ -3,7 +3,7 @@
 import fs from 'fs-extra'
 import pMap from 'p-map'
 
-import type Context from './Context'
+import Context from './Context'
 
 /**
  * Class for Initiating the scraping process.
@@ -40,13 +40,11 @@ export default class PopApiScraper {
    * The base modules for popcorn-api
    * @external {PopApi} https://github.com/ChrisAlderson/pop-api
    * @param {!PopApi} PopApi - The PopApiScraper instance.
-   * @param {!Context} options.context - The context the run the providers in.
    * @param {!Object} options - The options for the BaseScraper middleware.
    * @param {!string} options.statusPath = - The path of the status file.
    * @param {!string} options.updatedPath - The path of the updated file.
    */
   constructor(PopApi: any, {
-    context,
     statusPath,
     updatedPath
   }: Object): void {
@@ -54,7 +52,7 @@ export default class PopApiScraper {
      * The context to execute the providers in.
      * @type {Context}
      */
-    this._context = context
+    this._context = new Context()
     /**
      * The path of the status file. Default is `./tmp/status.json`.
      * @type {string}

@@ -16,22 +16,22 @@ class IProvider {
    * Get the contents for a configuration.
    * @param {!Object} config - The config to get content with.
    * @abstract
-   * @throws {Error} - Using default method: 'getContent'
+   * @throws {Error} - Using default method: '_scrapeConfig'
    * @returns {Promise<Array<Object>, Error>} - The results of a configuration.
    */
-  getContent(config) {
-    throw new Error('Using default method: \'getContent\'');
+  scrapeConfig(config) {
+    throw new Error('Using default method: \'scrapeConfig\'');
   }
 
   /**
    * Get the contents for the configurations.
    * @abstract
-   * @throws {Error} - Using default method: 'getContents'
-   * @returns {Promise<Array<Object>, Error>} - The results of the
-   * scrape configurations.
+   * @throws {Error} - Using default method: 'scrapeConfigs'
+   * @returns {Promise<Array<Object>, Error>} - The results of the scrape
+   * configurations.
    */
-  getContents() {
-    throw new Error('Using default method: \'getContents\'');
+  scrapeConfigs() {
+    throw new Error('Using default method: \'scrapeConfigs\'');
   }
 
 }

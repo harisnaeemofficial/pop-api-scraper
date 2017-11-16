@@ -21,15 +21,15 @@ describe('IProvider', () => {
     iProvider = new IProvider()
   })
 
-  /** @test {IProvider#getContent} */
-  it('should throw an error when calling the getContent method', () => {
-    expect(iProvider.getContent).to
-      .throw('Using default method: \'getContent\'')
+  /** @test {IProvider#_scrapeConfig} */
+  it('should throw an error when calling the scrapeConfig method', () => {
+    expect(iProvider.scrapeConfig).to
+      .throw('Using default method: \'scrapeConfig\'')
   })
 
-  /** @test {IProvider#getContents} */
-  it('should throw an error when calling the getContents method', () => {
-    expect(iProvider.getContents).to
-      .throw('Using default method: \'getContents\'')
+  /** @test {IProvider#scrapeConfigs} */
+  it('should throw an error when calling the scrapeConfigs method', () => {
+    expect(iProvider.scrapeConfigs).to
+      .throw('Using default method: \'scrapeConfigs\'')
   })
 })

@@ -12,13 +12,16 @@ var _pMap = require('p-map');
 
 var _pMap2 = _interopRequireDefault(_pMap);
 
+var _Context = require('./Context');
+
+var _Context2 = _interopRequireDefault(_Context);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Class for Initiating the scraping process.
  * @type {AbstractScraper}
  */
-// Import the necessary modules.
 class PopApiScraper {
 
   /**
@@ -26,7 +29,6 @@ class PopApiScraper {
    * The base modules for popcorn-api
    * @external {PopApi} https://github.com/ChrisAlderson/pop-api
    * @param {!PopApi} PopApi - The PopApiScraper instance.
-   * @param {!Context} options.context - The context the run the providers in.
    * @param {!Object} options - The options for the BaseScraper middleware.
    * @param {!string} options.statusPath = - The path of the status file.
    * @param {!string} options.updatedPath - The path of the updated file.
@@ -44,7 +46,6 @@ class PopApiScraper {
    * @type {Map<any>}
    */
   constructor(PopApi, {
-    context,
     statusPath,
     updatedPath
   }) {
@@ -52,7 +53,7 @@ class PopApiScraper {
      * The context to execute the providers in.
      * @type {Context}
      */
-    this._context = context;
+    this._context = new _Context2.default();
     /**
      * The path of the status file. Default is `./tmp/status.json`.
      * @type {string}
@@ -160,5 +161,6 @@ class PopApiScraper {
   }
 
 }
-exports.default = PopApiScraper;
+exports.default = PopApiScraper; // Import the necessary modules.
+
 PopApiScraper._installedPlugins = new Map();
