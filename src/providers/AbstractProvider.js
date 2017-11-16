@@ -12,16 +12,16 @@ import IProvider from './IProvider'
 export default class AbstractProvider extends IProvider {
 
   /**
+   * The max allowed concurrent web requests.
+   * @type {number}
+   */
+  maxWebRequests: number
+
+  /**
    * The configs fro the abstract provider.
    * @type {Array<Object>}
    */
   _configs: Array<Object>
-
-  /**
-   * The max allowed concurrent web requests.
-   * @type {number}
-   */
-  _maxWebRequests: number
 
   /**
    * Create a nwe AbstractProvider object.
@@ -36,15 +36,15 @@ export default class AbstractProvider extends IProvider {
     super()
 
     /**
+     * The max allowed concurrent web requests.
+     * @type {number}
+     */
+    this.maxWebRequests = maxWebRequests
+    /**
      * The configs fro the abstract provider.
      * @type {Array<Object>}
      */
     this._configs = configs
-    /**
-     * The max allowed concurrent web requests.
-     * @type {number}
-     */
-    this._maxWebRequests = maxWebRequests
   }
 
   /**

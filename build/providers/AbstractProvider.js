@@ -34,22 +34,22 @@ class AbstractProvider extends _IProvider2.default {
 
 
   /**
-   * The configs fro the abstract provider.
-   * @type {Array<Object>}
+   * The max allowed concurrent web requests.
+   * @type {number}
    */
   constructor(PopApiScraper, { configs, maxWebRequests = 2 }) {
     super();
 
     /**
+     * The max allowed concurrent web requests.
+     * @type {number}
+     */
+    this.maxWebRequests = maxWebRequests;
+    /**
      * The configs fro the abstract provider.
      * @type {Array<Object>}
      */
     this._configs = configs;
-    /**
-     * The max allowed concurrent web requests.
-     * @type {number}
-     */
-    this._maxWebRequests = maxWebRequests;
   }
 
   /**
@@ -61,8 +61,8 @@ class AbstractProvider extends _IProvider2.default {
 
 
   /**
-   * The max allowed concurrent web requests.
-   * @type {number}
+   * The configs fro the abstract provider.
+   * @type {Array<Object>}
    */
   scrapeConfigs() {
     return (0, _pMap2.default)(this._configs, config => this.scrapeConfig(config));
