@@ -18,28 +18,33 @@ export default class ExampleProvider extends AbstractProvider {
   _httpService: HttpService
 
   /**
-   * Create a nwe AbstractProvider object.
+   * Create a nwe ExampleProvider object.
    * @param {!PopApiScraper} PopApiScraper - The PopApScraper instance.
-   * @param {!Object} options - The options for the AbstractProvider.
-   * @param {!string} options.name - The name of the provider.
+   * @param {!Object} options - The options for the ExampleProvider.
    * @param {!Array<Object>} options.configs - The configurations of the
    * provider.
+   * @param {!number} [maxWebRequests=2] - The max allowed concurrent web
+   * requests.
    */
-  constructor(PopApiScraper: PopApiScraper, {name, configs}: Object): void {
-    super(PopApiScraper, {name, configs})
+  constructor(PopApiScraper: any, {configs, maxWebRequests = 2}: Object): void {
+    super(PopApiScraper, {configs, maxWebRequests})
 
+    /**
+     * The http service for the provider.
+     * @type {HttpService}
+     */
     this._httpService = new HttpService({
       baseUrl: 'https://jsonplaceholder.typicode.com/'
     })
   }
 
   /**
-   * Get the contents for a configuration.
+   * Get the contents for the configurations.
    * @override
-   * @param {!Object} config - The config to get content with.
-   * @returns {Promise<Array<Object>, Error>} - The results of a configuration.
+   * @returns {Promise<Array<Object>, Error>} - The results of the scraped
+   * configurations.
    */
-  getContent(config: Object): Promise<Array<Object> | Error> {
+  scrapeConfig(config: Object): Promise<Array<Object> | Error> {
     // Or use the HttpService to get  content from web apis or websites.
     return Promise.resolve([{
       key: 'value'
