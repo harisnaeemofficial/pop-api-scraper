@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-expressions */
 import { expect } from 'chai'
 
-import IHttpService from '../../src/http/IHttpService'
+import { IHttpService } from '../../src'
 
 /** @test {IHttpService} */
 describe('IHttpService', () => {

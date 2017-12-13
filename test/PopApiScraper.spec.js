@@ -7,7 +7,7 @@ import { expect } from 'chai'
 import { join } from 'path'
 
 import ExampleProvider from '../examples/ExampleProvider'
-import PopApiScraper from '../src/PopApiScraper'
+import { PopApiScraper } from '../src'
 
 /** @test {PopApiScraper} */
 describe('PopApiScraper', () => {

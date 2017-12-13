@@ -6,8 +6,10 @@ import mkdirp from 'mkdirp'
 import { join } from 'path'
 import { expect } from 'chai'
 
-import Cron from '../src/Cron'
-import PopApiScraper from '../src/PopApiScraper'
+import {
+  Cron,
+  PopApiScraper
+} from '../src/'
 
 /** @test {Cron} */
 describe('Cron', () => {

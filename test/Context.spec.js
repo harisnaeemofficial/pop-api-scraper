@@ -3,8 +3,10 @@
 /* eslint-disable no-unused-expressions */
 import { expect } from 'chai'
 
-import Context from '../src/Context'
-import IProvider from '../src/providers/IProvider'
+import {
+  Context,
+  IProvider
+} from '../src'
 
 /** @test {Context} */
 describe('Context', () => {

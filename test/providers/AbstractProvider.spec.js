@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-expressions */
 import { expect } from 'chai'
 
-import AbstractProvider from '../../src/providers/AbstractProvider'
+import { AbstractProvider } from '../../src'
 
 /** @test {AbstractProvider} */
 describe('AbstractProvider', () => {

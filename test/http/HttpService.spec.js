@@ -7,7 +7,7 @@ import { expect } from 'chai'
 import { existsSync } from 'fs'
 import { join } from 'path'
 
-import HttpService from '../../src/http/HttpService'
+import { HttpService } from '../../src'
 
 /** @test {HttpService} */
 describe('HttpService', () => {
