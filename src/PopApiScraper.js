@@ -12,28 +12,28 @@ import Context from './Context'
 export default class PopApiScraper {
 
   /**
-   * A map of the installed plugins.
-   * @type {Map<any>}
-   */
-  static _installedPlugins: Map<string, any> = new Map()
-
-  /**
    * The context to execute the providers in.
    * @type {Context}
    */
-  _context: Context
+  context: Context
 
   /**
    * The path of the status file. Default is `./tmp/status.json`.
    * @type {string}
    */
-  _statusPath: string
+  statusPath: string
 
   /**
    * The path of the updated file. Default is `./tmp/updated.json`.
    * @type {string}
    */
-  _updatedPath: string
+  updatedPath: string
+
+  /**
+   * A map of the installed plugins.
+   * @type {Map<any>}
+   */
+  static _installedPlugins: Map<string, any> = new Map()
 
   /**
    * Create a new BaseScraper object.
@@ -52,20 +52,20 @@ export default class PopApiScraper {
      * The context to execute the providers in.
      * @type {Context}
      */
-    this._context = new Context()
+    this.context = new Context()
     /**
      * The path of the status file. Default is `./tmp/status.json`.
      * @type {string}
      */
-    this._statusPath = statusPath
+    this.statusPath = statusPath
     /**
      * The path of the updated file. Default is `./tmp/updated.json`.
      * @type {string}
      */
-    this._updatedPath = updatedPath
+    this.updatedPath = updatedPath
 
-    fs.createWriteStream(this._statusPath).end()
-    fs.createWriteStream(this._updatedPath).end()
+    fs.createWriteStream(this.statusPath).end()
+    fs.createWriteStream(this.updatedPath).end()
 
     PopApi.scraper = this
   }
@@ -75,7 +75,7 @@ export default class PopApiScraper {
    * @returns {Promise<string, Error>} - The status of the scraping process.
    */
   getStatus(): Promise<string | Error> {
-    return fs.readFile(this._statusPath, 'utf8')
+    return fs.readFile(this.statusPath, 'utf8')
   }
 
   /**
@@ -86,7 +86,7 @@ export default class PopApiScraper {
    * is one.
    */
   setStatus(status: string): Promise<string | Error> {
-    return fs.writeFile(this._statusPath, status, 'utf8')
+    return fs.writeFile(this.statusPath, status, 'utf8')
   }
 
   /**
@@ -94,7 +94,7 @@ export default class PopApiScraper {
    * @returns {Promise<number, Error>} - The status of the scraping process.
    */
   getUpdated(): Promise<number | Error> {
-    return fs.readFile(this._updatedPath, 'utf8')
+    return fs.readFile(this.updatedPath, 'utf8')
       .then(res => Number(res))
   }
 
@@ -106,7 +106,7 @@ export default class PopApiScraper {
    * is one.
    */
   setUpdated(updated: number): Promise<string | Error> {
-    return fs.writeFile(this._updatedPath, String(updated), 'utf8')
+    return fs.writeFile(this.updatedPath, String(updated), 'utf8')
   }
 
   /**
@@ -141,10 +141,10 @@ export default class PopApiScraper {
     await this.setUpdated(Math.floor(new Date().getTime() / 1000))
 
     return pMap(PopApiScraper._installedPlugins.values(), async provider => {
-      this._context.provider = provider
+      this.context.provider = provider
       await this.setStatus(`Scraping: ${provider.name}`)
 
-      return this._context.execute()
+      return this.context.execute()
     }, {
       concurrency: 1
     }).then(() => this.setStatus('idle'))

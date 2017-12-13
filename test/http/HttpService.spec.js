@@ -44,7 +44,7 @@ describe('HttpService', () => {
 
   /** @test {HttpService#_request} */
   it('should make a successful HTTP request', done => {
-    httpService._request('GET', 'posts/1', {
+    httpService.request('GET', 'posts/1', {
       json: true
     }, true).then(res => {
       expect(res).to.be.an('object')

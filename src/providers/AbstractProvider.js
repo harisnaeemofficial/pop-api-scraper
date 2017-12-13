@@ -21,7 +21,7 @@ export default class AbstractProvider extends IProvider {
    * The configs fro the abstract provider.
    * @type {Array<Object>}
    */
-  _configs: Array<Object>
+  configs: Array<Object>
 
   /**
    * Create a nwe AbstractProvider object.
@@ -44,7 +44,7 @@ export default class AbstractProvider extends IProvider {
      * The configs fro the abstract provider.
      * @type {Array<Object>}
      */
-    this._configs = configs
+    this.configs = configs
   }
 
   /**
@@ -54,7 +54,7 @@ export default class AbstractProvider extends IProvider {
    * configurations.
    */
   scrapeConfigs(): Promise<Array<Object> | Error> {
-    return pMap(this._configs, config => {
+    return pMap(this.configs, config => {
       return this.scrapeConfig(config)
     }, {
       concurrency: 1

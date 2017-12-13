@@ -18,7 +18,7 @@ export default class IHttpService {
    * cheerio.
    */
   get(
-    endpoint?: string,
+    endpoint: string,
     opts?: Object = {},
     raw?: boolean = false
   ): Promise<any | Error> {
@@ -35,7 +35,7 @@ export default class IHttpService {
    * cheerio.
    */
   post(
-    endpoint?: string,
+    endpoint: string,
     opts?: Object = {}
   ): Promise<any | Error> {
     throw new Error('Using default method: \'post\'')
@@ -51,7 +51,7 @@ export default class IHttpService {
    * cheerio.
    */
   put(
-    endpoint?: string,
+    endpoint: string,
     opts?: Object = {}
   ): Promise<any | Error> {
     throw new Error('Using default method: \'put\'')
@@ -67,7 +67,7 @@ export default class IHttpService {
    * cheerio.
    */
   delete(
-    endpoint?: string,
+    endpoint: string,
     opts?: Object = {}
   ): Promise<any | Error> {
     throw new Error('Using default method: \'delete\'')
@@ -99,20 +99,20 @@ export default class IHttpService {
   /**
    * Make a HTTP request.
    * @param {!string} method - The method of the HTTP request.
-   * @param {?string} [endpoint] - The endpoint to make the HTTP request to.
+   * @param {!string} [endpoint] - The endpoint to make the HTTP request to.
    * @param {?Object} [opts] - The options for the HTTP request.
    * @param {?boolean} [raw] - Return the raw body.
-   * @throws {Error} - Using default method: '_request'
+   * @throws {Error} - Using default method: 'request'
    * @returns {Promise<Object, Error>} - Promise with the HTML loaded in
    * cheerio.
    */
-  _request(
+  request(
     method: string,
-    endpoint?: string,
+    endpoint: string,
     opts?: Object,
     raw?: boolean
   ): Promise<any | Error> {
-    throw new Error('Using default method: \'_request\'')
+    throw new Error('Using default method: \'request\'')
   }
 
 }

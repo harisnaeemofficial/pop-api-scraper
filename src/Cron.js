@@ -18,13 +18,13 @@ export default class Cron {
    * The cron time for scraping audios. Default is `0 0 *\/6 * * *`.
    * @type {string}
    */
-  _cronTime: string
+  cronTime: string
 
   /**
    * The timezone the con job will hold. Default is `America/Los_Angeles`.
    * @type {string}
    */
-  _timeZone: string
+  timeZone: string
 
   /**
    * Create a new Cron object.
@@ -43,12 +43,12 @@ export default class Cron {
      * The cron time for scraping audios. Default is `0 0 *\/6 * * *`.
      * @type {string}
      */
-    this._cronTime = cronTime
+    this.cronTime = cronTime
     /**
      * The timezone the con job will hold. Default is `America/Los_Angeles`.
      * @type {string}
      */
-    this._timeZone = timeZone
+    this.timeZone = timeZone
 
     PopApiScraper.cron = this._getCron(PopApiScraper)
   }
@@ -81,8 +81,8 @@ export default class Cron {
    */
   _getCron(PopApiScraper: any, start?: boolean): CronJob {
     return new CronJob({
-      cronTime: this._cronTime,
-      timeZone: this._timeZone,
+      cronTime: this.cronTime,
+      timeZone: this.timeZone,
       onComplete: this._onComplete.bind(PopApiScraper),
       onTick: this._onTick.bind(PopApiScraper),
       start

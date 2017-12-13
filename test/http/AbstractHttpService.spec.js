@@ -34,25 +34,25 @@ describe('AbstractHttpService', () => {
   /** @test {AbstractHttpService#get} */
   it('should throw an error when calling the get method', () => {
     expect(abstractHttpService.get.bind(abstractHttpService)).to
-      .throw('Using default method: \'_request\'')
+      .throw('Using default method: \'request\'')
   })
 
   /** @test {AbstractHttpService#post} */
   it('should throw an error when calling the post method', () => {
     expect(abstractHttpService.post.bind(abstractHttpService)).to
-      .throw('Using default method: \'_request\'')
+      .throw('Using default method: \'request\'')
   })
 
   /** @test {AbstractHttpService#put} */
   it('should throw an error when calling the put method', () => {
     expect(abstractHttpService.put.bind(abstractHttpService)).to
-      .throw('Using default method: \'_request\'')
+      .throw('Using default method: \'request\'')
   })
 
   /** @test {AbstractHttpService#delete} */
   it('should throw an error when calling the delete method', () => {
     expect(abstractHttpService.delete.bind(abstractHttpService)).to
-      .throw('Using default method: \'_request\'')
+      .throw('Using default method: \'request\'')
   })
 
   /** @test {AbstractHttpService#download} */
@@ -77,8 +77,8 @@ describe('AbstractHttpService', () => {
 
   /** @test {AbstractHttpService#_request} */
   it('should throw an error when calling the _request method', () => {
-    expect(abstractHttpService._request.bind(abstractHttpService)).to
-      .throw('Using default method: \'_request\'')
+    expect(abstractHttpService.request.bind(abstractHttpService)).to
+      .throw('Using default method: \'request\'')
   })
 
   /** @test {AbstractHttpService#printDebug} */

@@ -51,7 +51,7 @@ describe('IHttpService', () => {
 
   /** @test {IHttpService#_request} */
   it('should throw an error when calling the _request method', () => {
-    expect(iHttpService._request).to
-      .throw('Using default method: \'_request\'')
+    expect(iHttpService.request).to
+      .throw('Using default method: \'request\'')
   })
 })

@@ -25,7 +25,7 @@ export default class HttpService extends AbstractHttpService {
    * @returns {Promise<Object, Error>} - Promise with the HTML loaded in
    * cheerio.
    */
-  _request(
+  request(
     method: string,
     endpoint: string,
     opts?: Object,

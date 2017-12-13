@@ -50,12 +50,12 @@ describe('PopApiScraper', () => {
 
   /** @test {PopApiScraper#constructor} */
   it('should check the attributes of the PopApiScraper', () => {
-    expect(popApiScraper._context).to.exist
-    expect(popApiScraper._context).to.be.an('object')
-    expect(popApiScraper._statusPath).to.exist
-    expect(popApiScraper._statusPath).to.be.a('string')
-    expect(popApiScraper._updatedPath).to.exist
-    expect(popApiScraper._updatedPath).to.be.a('string')
+    expect(popApiScraper.context).to.exist
+    expect(popApiScraper.context).to.be.an('object')
+    expect(popApiScraper.statusPath).to.exist
+    expect(popApiScraper.statusPath).to.be.a('string')
+    expect(popApiScraper.updatedPath).to.exist
+    expect(popApiScraper.updatedPath).to.be.a('string')
   })
 
   /** @test {PopApiScraper#setStatus} */

@@ -21,7 +21,7 @@ describe('IProvider', () => {
     iProvider = new IProvider()
   })
 
-  /** @test {IProvider#_scrapeConfig} */
+  /** @test {IProvider#scrapeConfig} */
   it('should throw an error when calling the scrapeConfig method', () => {
     expect(iProvider.scrapeConfig).to
       .throw('Using default method: \'scrapeConfig\'')
