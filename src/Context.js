@@ -1,6 +1,6 @@
 // Import the necessary modules.
 // @flow
-import IProvider from './providers/IProvider'
+import { IProvider } from './providers'
 
 /**
  * Base context for the strategy pattern.

@@ -1,4 +1,5 @@
 import babel from 'rollup-plugin-babel'
+import json from 'rollup-plugin-json'
 import resolve from 'rollup-plugin-node-resolve'
 import uglify from 'rollup-plugin-uglify'
 import { minify } from 'uglify-es'
@@ -12,17 +13,19 @@ export default {
   input: './src/index.js',
   external: [
     ...Object.keys(dependencies),
-    'child_process',
-    'cluster',
+    'pop-api',
+
     'fs',
-    'http',
-    'os',
     'path',
+    'querystring',
     'url'
   ],
   plugins: [
     resolve(),
-    babel(),
+    json(),
+    babel({
+      exclude: 'node_modules/**'
+    }),
     uglify({}, minify)
   ],
   output: [{
