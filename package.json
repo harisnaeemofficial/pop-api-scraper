@@ -46,15 +46,19 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "./node_modules/.bin/babel src --out-dir build",
-    "coverage": "./node_modules/.bin/babel-node coverage.js",
-    "coveralls": "cat ./coverage/lcov.info | node ./node_modules/.bin/coveralls",
-    "docs": "./node_modules/.bin/esdoc -c .esdoc.json",
-    "flow": "./node_modules/.bin/flow",
-    "lint": "./node_modules/.bin/eslint {example,src,test}/** *.js$",
+    "build": "cross-env NODE_ENV=production rollup -c",
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "debug": "npm run dev --inspect",
+    "dev": "cross-env DEBUG=pop-api* NODE_ENV=development node -r babel-register ./examples/exampleSetup.js",
+    "docs": "esdoc -c .esdoc.json",
+    "flow": "flow",
+    "flow-typed": "flow-typed install",
+    "lint": "eslint {example,src,test}/** *.js$",
+    "release": "standard-version",
     "precommit": "npm run lint && npm run flow",
+    "prerelease": "npm run build",
     "prepush": "npm run test",
-    "test": "cross-env NODE_ENV=test ./node_modules/.bin/nyc --reporter=lcov --reporter=text ./node_modules/.bin/mocha --recursive --exit --reporter spec test/**"
+    "test": "cross-env NODE_ENV=test nyc -r=lcov -r=text mocha --exit --recursive"
   },
   "engines": {
     "node": ">=7.10.1"
