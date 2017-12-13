@@ -147,7 +147,10 @@ export default class PopApiScraper {
       return this.context.execute()
     }, {
       concurrency: 1
-    }).then(() => this.setStatus('idle'))
+    }).then(res => {
+      this.setStatus('idle')
+      return res
+    })
   }
 
 }

@@ -124,12 +124,10 @@ describe('PopApiScraper', () => {
 
   /** @test {PopApiScraper#scrape} */
   it('should call the scrape method', done => {
-    popApiScraper.scrape()
-      .then(done)
-      .catch(err => {
-        expect(err).to.be.an('Error')
-        done()
-      })
+    popApiScraper.scrape().then(res => {
+      expect(res).to.be.an('array')
+      done()
+    }).catch(done)
   })
 
   /**

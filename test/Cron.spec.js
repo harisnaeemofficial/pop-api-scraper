@@ -72,7 +72,7 @@ describe('Cron', () => {
   /** @test {Cron#_onTick} */
   it('should execute the scrape method', done => {
     cron._onTick(PopApi).then(res => {
-      expect(res).to.be.undefined
+      expect(res).to.be.an('array')
       done()
     }).catch(done)
   })

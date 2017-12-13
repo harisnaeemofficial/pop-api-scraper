@@ -34,7 +34,7 @@ export default class ExampleProvider extends AbstractProvider {
      * The http service for the provider.
      * @type {HttpService}
      */
-    this._httpService = new HttpService({
+    this.httpService = new HttpService({
       baseUrl: 'https://jsonplaceholder.typicode.com/'
     })
   }
