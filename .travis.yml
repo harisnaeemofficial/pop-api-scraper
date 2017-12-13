@@ -22,7 +22,7 @@ jobs:
     node_js: '9'
     before_script:
     - npm i -g flow-typed
-    - npm i --no-save git+https://github.com/chrisalderson/pop-api.git#development
+    - npm i --no-save pop-api
     - flow-typed install
     script:
     - npm run lint
