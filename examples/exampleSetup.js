@@ -4,7 +4,10 @@ import { PopApi } from 'pop-api'
 import { join } from 'path'
 
 import ExampleProvider from './ExampleProvider'
-import { PopApiScraper } from '../src'
+import {
+  Cron,
+  PopApiScraper
+} from '../src'
 
 (async () => {
   try {
@@ -16,6 +19,10 @@ import { PopApiScraper } from '../src'
     PopApi.use(PopApiScraper, {
       statusPath: join(...[os.tmpdir(), 'status.json']),
       updatedPath: join(...[os.tmpdir(), 'updated.json'])
+    })
+    PopApi.use(Cron, {
+      cronTime: '0 0 */6 * * *',
+      start: false
     })
 
     const res = await PopApi.scraper.scrape()
