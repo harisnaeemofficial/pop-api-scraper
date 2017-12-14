@@ -55,31 +55,20 @@ describe('Cron', () => {
 
   /** @test {Context#constructor} */
   it('should test the constructor with options.', () => {
-    new Cron({}, { // eslint-disable-line no-new
-      cronTime: '0 0 */6 * * *',
-      timeZone: 'America/Los_Angeles'
+    new Cron(PopApi, { // eslint-disable-line no-new
+      cronTime: '0 0 */6 * * *'
     })
   })
 
-  /** @test {Cron#_onComplete} */
-  it('should set the status to when the cronjob is completed', done => {
-    cron._onComplete(PopApi).then(res => {
-      expect(res).to.be.undefined
-      done()
-    }).catch(done)
+  /** @test {Corn#constructor} */
+  it('should check the attributes of the Cron', () => {
+    expect(cron.cronTime).to.exist
+    expect(cron.cronTime).to.be.a('string')
   })
 
-  /** @test {Cron#_onTick} */
-  it('should execute the scrape method', done => {
-    cron._onTick(PopApi).then(res => {
-      expect(res).to.be.an('array')
-      done()
-    }).catch(done)
-  })
-
-  /** @test {Cron#_getCron} */
+  /** @test {Cron#getCron} */
   it('should get the cron object', () => {
-    const res = cron._getCron(PopApi)
+    const res = cron.getCron(PopApi)
     expect(res).to.be.an('object')
   })
 

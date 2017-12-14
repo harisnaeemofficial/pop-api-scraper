@@ -1,12 +1,6 @@
 // Import the necessary modules.
 // @flow
-import {
-  /**
-   * Cron for NodeJS.
-   * @external {CronJob} - https://github.com/kelektiv/node-cron
-   */
-  CronJob
-} from 'cron'
+import cron from 'node-cron'
 
 /**
  * Cron class for executing the scraper periodically.
@@ -21,72 +15,32 @@ export default class Cron {
   cronTime: string
 
   /**
-   * The timezone the con job will hold. Default is `America/Los_Angeles`.
-   * @type {string}
-   */
-  timeZone: string
-
-  /**
    * Create a new Cron object.
-   * @param {!PopApiScraper} PopApiScraper - The PopApiScraper instance.
+   * @param {!PopApi} PopApi - The PopApi instance.
    * @param {!Object} [options={}] - The options for the Cron middleware.
    * @param {!string} [options.cronTime=0 0 *\/6 * * *] - The cron tab to
    * execute the scraper.
-   * @param {!string} [options.timeZone=America/Los_Angels] - The timezone the
-   * cronjob will hold.
    */
-  constructor(PopApiScraper: any, {
-    cronTime = '0 0 */6 * * *',
-    timeZone = 'America/Los_Angeles'
+  constructor(PopApi: any, {
+    cronTime = '0 0 */6 * * *'
   }: Object = {}): void {
     /**
      * The cron time for scraping audios. Default is `0 0 *\/6 * * *`.
      * @type {string}
      */
     this.cronTime = cronTime
-    /**
-     * The timezone the con job will hold. Default is `America/Los_Angeles`.
-     * @type {string}
-     */
-    this.timeZone = timeZone
 
-    PopApiScraper.cron = this._getCron(PopApiScraper)
-  }
-
-  /**
-   * Function execute on complete by the cron job.
-   * @param {!PopApiScraper} PopApiScraper - The PopApiScraper instance.
-   * @returns {Promise<string, Error>} - The promise to set the scraper
-   * status .
-   */
-  _onComplete(PopApiScraper: any): Promise<string | Error> {
-    return PopApiScraper.scraper.setStatus('Idle')
-  }
-
-  /**
-   * Function executed on tick by the cron job.
-   * @param {!PopApiScraper} PopApiScraper - The PopApiScraper instance.
-   * @returns {Promise<Array<Object>, Error>} - The result of the scraping
-   * process.
-   */
-  _onTick(PopApiScraper: any): Promise<Array<any> | Error> {
-    return PopApiScraper.scraper.scrape()
+    PopApi.cron = this.getCron(PopApi)
   }
 
   /**
    * Get the cron job to run.
-   * @param {!PopApiScraper} PopApiScraper - The PopApiScraper instance.
+   * @param {!PopApi} PopApi - The PopApi instance.
    * @param {?boolean} [start] - Start the cron job.
-   * @returns {CronJob} - A configured cron job.
+   * @returns {Object} - A configured cron job.
    */
-  _getCron(PopApiScraper: any, start?: boolean): CronJob {
-    return new CronJob({
-      cronTime: this.cronTime,
-      timeZone: this.timeZone,
-      onComplete: this._onComplete.bind(PopApiScraper),
-      onTick: this._onTick.bind(PopApiScraper),
-      start
-    })
+  getCron(PopApi: any, start?: boolean): Object {
+    return cron.schedule(this.cronTime, PopApi.scraper.scrape, start)
   }
 
 }
