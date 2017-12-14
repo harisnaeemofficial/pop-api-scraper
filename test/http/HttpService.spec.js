@@ -7,7 +7,7 @@ import { expect } from 'chai'
 import { existsSync } from 'fs'
 import { join } from 'path'
 
-import HttpService from '../../src/http/HttpService'
+import { HttpService } from '../../src'
 
 /** @test {HttpService} */
 describe('HttpService', () => {
@@ -18,7 +18,7 @@ describe('HttpService', () => {
   let httpService: HttpService
 
   /**
-   * The temporaty directory to store the status and updated files.
+   * The temporary directory to store the status and updated files.
    * @type {string}
    */
   let tempDir: string
@@ -37,14 +37,14 @@ describe('HttpService', () => {
     del.sync([tempDir])
     mkdirp(tempDir)
 
-    httpService = new HttpService({}, {
+    httpService = new HttpService({
       baseUrl: 'https://jsonplaceholder.typicode.com/'
     })
   })
 
   /** @test {HttpService#_request} */
-  it('should make a succesful HTTP request', done => {
-    httpService._request('GET', 'posts/1', {
+  it('should make a successful HTTP request', done => {
+    httpService.request('GET', 'posts/1', {
       json: true
     }, true).then(res => {
       expect(res).to.be.an('object')

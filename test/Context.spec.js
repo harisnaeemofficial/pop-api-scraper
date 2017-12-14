@@ -3,8 +3,10 @@
 /* eslint-disable no-unused-expressions */
 import { expect } from 'chai'
 
-import Context from '../src/Context'
-import IProvider from '../src/IProvider'
+import {
+  Context,
+  IProvider
+} from '../src'
 
 /** @test {Context} */
 describe('Context', () => {
@@ -22,24 +24,19 @@ describe('Context', () => {
     context = new Context()
   })
 
-  /** @test {Context#_provider} */
-  it('should check if Context has a _provider', () => {
-    expect(context._provider).to.be.an('object')
-  })
-
   /** @test {Context#execute} */
   it('should throw an error when executing the default provider', () => {
     expect(context.execute.bind(context)).to
-      .throw('Using default method: \'search\'')
+      .throw('Using default method: \'scrapeConfigs\'')
   })
 
-  /** @test {Context#_provider} */
-  it('should check if Context has a _provider', () => {
+  /** @test {Context#provider} */
+  it('should check if Context has a provider', () => {
     const current = context.provider
     const iProvider = new IProvider()
     context.provider = iProvider
 
-    expect(context._provider).to.not.equal(current)
-    expect(context._provider).to.equal(iProvider)
+    expect(context.provider).to.not.equal(current)
+    expect(context.provider).to.equal(iProvider)
   })
 })

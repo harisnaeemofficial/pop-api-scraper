@@ -35,13 +35,10 @@ export default class AbstractHttpService extends IHttpService {
 
   /**
    * Create a new Request object.
-   * @param {!PopApi} PopApi - The PopApi instance.
-   * @param {!Object} options - The options to the HttpService middleware.
-   * @param {!string} options.baseUrl - The base url of the website to scrape.
-   * @param {?Object} options.options - The default options for the HTTP
-   * requests.
+   * @param {!string} baseUrl - The base url of the website to scrape.
+   * @param {?Object} options={} - The default options for the HTTP requests.
    */
-  constructor(PopApi: any, {baseUrl, options = {}}: Object): void {
+  constructor({baseUrl, options = {}}: Object): void {
     super()
 
     /**
@@ -75,7 +72,7 @@ export default class AbstractHttpService extends IHttpService {
     opts?: Object = {},
     raw?: boolean = false
   ): Promise<any | Error> {
-    return this._request('GET', endpoint, opts, raw)
+    return this.request('GET', endpoint, opts, raw)
   }
 
   /**
@@ -87,10 +84,10 @@ export default class AbstractHttpService extends IHttpService {
    * cheerio.
    */
   post(
-    endpoint?: string,
+    endpoint: string,
     opts?: Object = {}
   ): Promise<any | Error> {
-    return this._request('POST', endpoint, opts)
+    return this.request('POST', endpoint, opts)
   }
 
   /**
@@ -102,10 +99,10 @@ export default class AbstractHttpService extends IHttpService {
    * cheerio.
    */
   put(
-    endpoint?: string,
+    endpoint: string,
     opts?: Object = {}
   ): Promise<any | Error> {
-    return this._request('PUT', endpoint, opts)
+    return this.request('PUT', endpoint, opts)
   }
 
   /**
@@ -117,10 +114,10 @@ export default class AbstractHttpService extends IHttpService {
    * cheerio.
    */
   delete(
-    endpoint?: string,
+    endpoint: string,
     opts?: Object = {}
   ): Promise<any | Error> {
-    return this._request('DELETE', endpoint, opts)
+    return this.request('DELETE', endpoint, opts)
   }
 
   /**
@@ -160,25 +157,6 @@ export default class AbstractHttpService extends IHttpService {
     }
 
     this.debug(msg)
-  }
-
-  /**
-   * Make a HTTP request.
-   * @param {!string} method - The method of the HTTP request.
-   * @param {?string} [endpoint] - The endpoint to make the HTTP request to.
-   * @param {?Object} [opts] - The options for the HTTP request.
-   * @param {?boolean} [raw] - Return the raw body.
-   * @throws {Error} - Using default method: '_request'
-   * @returns {Promise<Object, Error>} - Promise with the HTML loaded in
-   * cheerio.
-   */
-  _request(
-    method: string,
-    endpoint?: string,
-    opts?: Object,
-    raw?: boolean
-  ): Promise<any | Error> {
-    return super._request(method, endpoint, opts, raw)
   }
 
 }

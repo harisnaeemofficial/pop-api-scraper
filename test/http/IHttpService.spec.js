@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-expressions */
 import { expect } from 'chai'
 
-import IHttpService from '../../src/http/IHttpService'
+import { IHttpService } from '../../src'
 
 /** @test {IHttpService} */
 describe('IHttpService', () => {
@@ -51,7 +51,7 @@ describe('IHttpService', () => {
 
   /** @test {IHttpService#_request} */
   it('should throw an error when calling the _request method', () => {
-    expect(iHttpService._request).to
-      .throw('Using default method: \'_request\'')
+    expect(iHttpService.request).to
+      .throw('Using default method: \'request\'')
   })
 })
