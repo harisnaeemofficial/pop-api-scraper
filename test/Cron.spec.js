@@ -42,7 +42,7 @@ describe('Cron', () => {
       'tmp'
     ])
     del.sync([tempDir])
-    mkdirp(tempDir)
+    mkdirp.sync(tempDir)
 
     const scraper = new PopApiScraper({}, {
       statusPath: join(...[tempDir, 'status.json']),

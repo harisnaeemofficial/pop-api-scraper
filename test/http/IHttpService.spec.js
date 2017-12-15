@@ -49,8 +49,8 @@ describe('IHttpService', () => {
       .throw('Using default method: \'printDebug\'')
   })
 
-  /** @test {IHttpService#_request} */
-  it('should throw an error when calling the _request method', () => {
+  /** @test {IHttpService#request} */
+  it('should throw an error when calling the request method', () => {
     expect(iHttpService.request).to
       .throw('Using default method: \'request\'')
   })
