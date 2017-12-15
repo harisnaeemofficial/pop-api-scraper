@@ -1,8 +1,8 @@
 # pop-api-scraper
 
-[![Build Status](https://travis-ci.org/ChrisAlderson/pop-api-scraper.svg?branch=development)](https://travis-ci.org/ChrisAlderson/pop-api-scraper)
-[![Windows Build](https://img.shields.io/appveyor/ci/chrisalderson/pop-api-scraper/master.svg?label=windows)](https://ci.appveyor.com/project/ChrisAlderson/pop-api-sraper)
-[![Coverage Status](https://coveralls.io/repos/github/ChrisAlderson/pop-api-scraper/badge.svg?branch=development)](https://coveralls.io/github/ChrisAlderson/pop-api-scraper?branch=development)
+[![Build Status](https://travis-ci.org/ChrisAlderson/pop-api-scraper.svg?branch=master)](https://travis-ci.org/ChrisAlderson/pop-api-scraper)
+[![Windows Build](https://img.shields.io/appveyor/ci/chrisalderson/pop-api-scraper/master.svg?label=windows)](https://ci.appveyor.com/project/ChrisAlderson/pop-api-scraper)
+[![Coverage Status](https://coveralls.io/repos/github/ChrisAlderson/pop-api-scraper/badge.svg?branch=master)](https://coveralls.io/github/ChrisAlderson/pop-api-scraper?branch=master)
 [![Dependency Status](https://david-dm.org/ChrisAlderson/pop-api-scraper.svg)](https://david-dm.org/ChrisAlderson/pop-api-scraper)
 [![devDependencies Status](https://david-dm.org/ChrisAlderson/pop-api-scraper/dev-status.svg)](https://david-dm.org/ChrisAlderson/pop-api-scraper?type=dev)
 
