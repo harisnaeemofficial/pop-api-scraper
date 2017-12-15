@@ -139,18 +139,19 @@ export default class PopApiScraper {
    */
   async scrape(): Promise<Array<Object> | Error> {
     await this.setUpdated(Math.floor(new Date().getTime() / 1000))
+    const providers = PopApiScraper._installedPlugins.values()
 
-    return pMap(PopApiScraper._installedPlugins.values(), async provider => {
+    const res = await pMap(providers, async provider => {
       this.context.provider = provider
       await this.setStatus(`Scraping: ${provider.name}`)
 
       return this.context.execute()
     }, {
       concurrency: 1
-    }).then(res => {
-      this.setStatus('idle')
-      return res
     })
+
+    await this.setStatus('idle')
+    return res
   }
 
 }
