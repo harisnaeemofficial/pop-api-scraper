@@ -11,34 +11,71 @@ it. Use it at your own risk.
 
 ## Features
 
-The pop-api-scraper project aims to provide the core modules for the [`popcorn-api`](https://github.com/popcorn-official/popcorn-api)
-scraper, but can also be used for other purposes by using middleware.
+The pop-api-scraper project aims to provide the core modules for the
+[`popcorn-api`](https://github.com/popcorn-official/popcorn-api) scraper, but
+can also be used for other purposes by using middleware.
  - Strategy pattern with providers
  - Cronjobs
  - Scraper wrapper class
  - HttpService with [`got`](https://github.com/sindresorhus/got)
 
+## Usage
+
+```js
+import { AbstractProvider, HttpService } from 'pop-api-scraper'
+
+export default class ExampleProvider extends AbstractProvider {
+
+  constructor(PopApiScraper: any, {configs, maxWebRequests = 2}: Object): void {
+    super(PopApiScraper, {configs, maxWebRequests})
+
+    this.httpService = new HttpService({
+      baseUrl: 'https://jsonplaceholder.typicode.com/'
+    })
+  }
+
+  scrapeConfig(config: Object): Promise<Array<Object> | Error> {
+    return this.httpService.get('/posts/1', {
+      json: true
+    })
+  }
+
+}
+```
+
+```js
+import os from 'os'
+import { Cron, PopApiScraper } from 'pop-api-scraper'
+import { PopApi } from 'pop-api'
+import { join } from 'path'
+
+import ExampleProvider from './ExampleProvider'
+
+(async () => {
+  try {
+    PopApiScraper.use(ExampleProvider, {
+      configs: [{
+        key: 'value'
+      }]
+    })
+
+    PopApi.use(PopApiScraper, {
+      statusPath: join(...[os.tmpdir(), 'status.json']),
+      updatedPath: join(...[os.tmpdir(), 'updated.json'])
+    })
+    PopApi.use(Cron, {
+      cronTime: '0 0 */6 * * *',
+      start: false
+    })
+
+    const res = await PopApi.scraper.scrape()
+    console.info(res[0])
+  } catch (err) {
+    console.error(err)
+  }
+})()
+```
+
 ## License
 
 MIT License
-
-Copyright (c) 2017 - pop-api-scraper - Released under the
-[MIT license](LICENSE.txt).
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
