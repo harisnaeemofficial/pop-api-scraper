@@ -1,6 +1,9 @@
 // Import the necessary modules.
 // @flow
+import debug from 'debug'
 import cron from 'node-cron'
+
+import { name } from '../package.json'
 
 /**
  * Cron class for executing the scraper periodically.
@@ -13,6 +16,12 @@ export default class Cron {
    * @type {string}
    */
   cronTime: string
+
+  /**
+   * The debug function for extra output.
+   * @type {Function}
+   */
+  _debug: Function
 
   /**
    * Create a new Cron object.
@@ -31,6 +40,11 @@ export default class Cron {
      * @type {string}
      */
     this.cronTime = cronTime
+    /**
+     * The debug function for extra output.
+     * @type {Function}
+     */
+    this._debug = debug(`${name}:Cron`)
 
     PopApi.cron = this.getCron(PopApi, start)
   }
@@ -42,6 +56,7 @@ export default class Cron {
    * @returns {Object} - A configured cron job.
    */
   getCron(PopApi: any, start?: boolean): Object {
+    this._debug(`Starting cron at ${Date.now()}`)
     return cron.schedule(this.cronTime, PopApi.scraper.scrape, start)
   }
 

@@ -1,9 +1,11 @@
 // Import the necessary modules.
 // @flow
+import debug from 'debug'
 import fs from 'fs-extra'
 import pMap from 'p-map'
 
 import Context from './Context'
+import { name } from '../package.json'
 
 /**
  * Class for Initiating the scraping process.
@@ -36,6 +38,12 @@ export default class PopApiScraper {
   static _installedPlugins: Map<string, any> = new Map()
 
   /**
+   * The debug function for extra output.
+   * @type {Function}
+   */
+  _debug: Function
+
+  /**
    * Create a new BaseScraper object.
    * The base modules for popcorn-api
    * @external {PopApi} https://github.com/ChrisAlderson/pop-api
@@ -63,6 +71,11 @@ export default class PopApiScraper {
      * @type {string}
      */
     this.updatedPath = updatedPath
+    /**
+     * The debug function for extra output.
+     * @type {Function}
+     */
+    this._debug = debug(`${name}:Scraper`)
 
     fs.createWriteStream(this.statusPath).end()
     fs.createWriteStream(this.updatedPath).end()
@@ -134,23 +147,28 @@ export default class PopApiScraper {
   }
   /**
    * Initiate the scraping.
+   * @param {!number} [concurrency=1] - How many providers to scrape
+   * concurrently.
    * @returns {Promise<Array<Object>, Error>} - The array of the scraped
    * content.
    */
-  async scrape(): Promise<Array<Object> | Error> {
+  async scrape(concurrency?: number = 1): Promise<Array<Object> | Error> {
     await this.setUpdated(Math.floor(new Date().getTime() / 1000))
     const providers = PopApiScraper._installedPlugins.values()
 
     const res = await pMap(providers, async provider => {
       this.context.provider = provider
-      await this.setStatus(`Scraping: ${provider.name}`)
+
+      const msg = `Scraping: ${provider.name}`
+      this._debug(msg)
+      await this.setStatus(msg)
 
       return this.context.execute()
-    }, {
-      concurrency: 1
-    })
+    }, { concurrency })
 
+    this._debug(`Finished scraping ${res.length}`)
     await this.setStatus('idle')
+
     return res
   }
 

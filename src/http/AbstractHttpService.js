@@ -28,10 +28,10 @@ export default class AbstractHttpService extends IHttpService {
   options: Object
 
   /**
-   * Option to debug requests.
+   * The debug function for extra output.
    * @type {Function}
    */
-  debug: Function
+  _debug: Function
 
   /**
    * Create a new Request object.
@@ -52,10 +52,10 @@ export default class AbstractHttpService extends IHttpService {
      */
     this.options = options
     /**
-     * Option to debug requests.
+     * The debug function for extra output.
      * @type {Function}
      */
-    this.debug = debug(`${name}:Http`)
+    this._debug = debug(`${name}:Http`)
   }
 
   /**
@@ -144,19 +144,17 @@ export default class AbstractHttpService extends IHttpService {
    */
   printDebug(method: string, uri: string, opts?: Object): void {
     let msg = `Making ${method} request to: ${uri}`
-
     if (opts) {
       const { body, query, form } = opts
-      msg += body
-        ? `?${stringify(body)}`
-        : query
-          ? `?${stringify(query)}`
-          : form
-            ? `?${stringify(form)}`
-            : ''
+      const s = {
+        ...body,
+        ...query,
+        ...form
+      }
+      msg += `?${stringify(s)}`
     }
 
-    this.debug(msg)
+    this._debug(msg)
   }
 
 }

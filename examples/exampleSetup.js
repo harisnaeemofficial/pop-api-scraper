@@ -12,6 +12,7 @@ import {
 (async () => {
   try {
     PopApiScraper.use(ExampleProvider, {
+      name: 'example-provider',
       configs: [{
         key: 'value'
       }]

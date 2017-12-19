@@ -13,12 +13,6 @@ import {
 export default class ExampleProvider extends AbstractProvider {
 
   /**
-   * The http service for the provider.
-   * @type {HttpService}
-   */
-  _httpService: HttpService
-
-  /**
    * Create a nwe ExampleProvider object.
    * @param {!PopApiScraper} PopApiScraper - The PopApScraper instance.
    * @param {!Object} options - The options for the ExampleProvider.
@@ -27,16 +21,8 @@ export default class ExampleProvider extends AbstractProvider {
    * @param {!number} [maxWebRequests=2] - The max allowed concurrent web
    * requests.
    */
-  constructor(PopApiScraper: any, {configs, maxWebRequests = 2}: Object): void {
-    super(PopApiScraper, {configs, maxWebRequests})
-
-    /**
-     * The http service for the provider.
-     * @type {HttpService}
-     */
-    this.httpService = new HttpService({
-      baseUrl: 'https://jsonplaceholder.typicode.com/'
-    })
+  constructor(PopApiScraper: any, {name, baseUrl, configs, maxWebRequests = 2}: Object): void {
+    super(PopApiScraper, {name, baseUrl, configs, maxWebRequests})
   }
 
   /**
@@ -47,6 +33,7 @@ export default class ExampleProvider extends AbstractProvider {
    */
   scrapeConfig(config: Object): Promise<Array<Object> | Error> {
     // Or use the HttpService to get  content from web apis or websites.
+    // return this.httpService.get()
     return Promise.resolve([{
       key: 'value'
     }])
